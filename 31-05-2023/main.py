@@ -63,8 +63,27 @@ class Classroom:
                 underaged_students.append(student)
         return underaged_students
 
+    def average_grade(self):
+        sum_of_averages = 0
+        for student in self.students:
+            sum_of_averages = sum_of_averages + student.grade_average
+        return sum_of_averages / len(self.students)
 
-student_maciek = Student('Maciek', 18, 88)
+    def get_best_student(self):
+        best_student = self.students[0]
+        for student in self.students[1:]:
+            if student.grade_average > best_student.grade_average:
+                best_student = student
+        return best_student
+
+    def students_with_name_starting_with(self, letter):
+        filtered_students = []
+        for student in self.students:
+            if student.name[0] == letter:
+                filtered_students.append(student)
+        return filtered_students
+
+
 
 polish_students = [
     Student(name="Aleksandra Nowak", age=17, grade_average=81.5),
@@ -72,35 +91,22 @@ polish_students = [
     Student(name="Katarzyna Wiśniewska", age=18, grade_average=78.3),
 ]
 
-abroad_students = [
+foreign_students = [
     Student(name="John Smith", age=17, grade_average=85.5),
     Student(name="Emily Johnson", age=16, grade_average=92.0),
     Student(name="Michael Williams", age=18, grade_average=78.3),
 ]
 
+polish_classroom = Classroom(polish_students)
 
-def average_grade(students):
-    sum_of_averages = 0
-    for student in students:
-        sum_of_averages = sum_of_averages + student.grade_average
-    return sum_of_averages / len(students)
+average_grade = polish_classroom.average_grade()
+print(average_grade)
 
+underaged_polish = polish_classroom.get_all_underage_students()
+for underaged_polish_student in underaged_polish:
+    print(underaged_polish_student)
 
-print(average_grade(polish_students))
-
-average_of_abroad = average_grade(abroad_students)
-print(average_of_abroad)
-
-
-def get_best_student(students):
-    best_student = students[0]
-    for student in students[1:]:
-        if student.grade_average > best_student.grade_average:
-            best_student = student
-    return best_student
-
-
-best_of_polish = get_best_student(polish_students)
+best_of_polish = polish_classroom.get_best_student()
 print(f'Najlepszy student to {best_of_polish}')
 
 
@@ -116,19 +122,9 @@ worst_of_polish = get_worst_student(polish_students)
 print(f'Najgorszy student to {worst_of_polish.name}')
 
 
-def students_with_name_starting_with(letter, all_students):
-    filtered_students = []
-    for student in all_students:
-        if student.name[0] == letter:
-            filtered_students.append(student)
-    return filtered_students
 
 
-polish_classroom = Classroom(polish_students)
 
-underaged_polish = polish_classroom.get_all_underage_students()
-for underaged_polish_student in underaged_polish:
-    print(underaged_polish_student)
 
 
 def test_students_with_name_starting_with_A_letter():
@@ -142,7 +138,8 @@ def test_students_with_name_starting_with_A_letter():
         Student('Andrzej', 18, 88),
     ]
 
-    result = students_with_name_starting_with("A", test_students)
+    test_classroom = Classroom(test_students)
+    result = test_classroom.students_with_name_starting_with("A")
 
     if result == expected_students:
         print('test A OK')
