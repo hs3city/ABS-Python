@@ -36,6 +36,9 @@ class Student:
             return True
         return False
 
+    def __str__(self):
+        return f'{self.name} {self.age}'
+
     def is_over_18(self):
         if self.age >= 18:
             return True
@@ -47,6 +50,8 @@ class Student:
             return True
         else:
             return False
+
+
 
 
 student_maciek = Student('Maciek', 18, 88)
@@ -110,7 +115,16 @@ def students_with_name_starting_with(letter, all_students):
 
 
 def get_all_underage_students(students):
-    ...
+    underaged_students = []
+    for student in students:
+        if student.age < 18:
+            underaged_students.append(student)
+    return underaged_students
+
+
+underaged_polish = get_all_underage_students(polish_students)
+for underaged_polish_student in underaged_polish:
+    print(underaged_polish_student)
 
 
 def test_students_with_name_starting_with_A_letter():
