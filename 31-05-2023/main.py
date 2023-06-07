@@ -52,6 +52,16 @@ class Student:
             return False
 
 
+class Classroom:
+    def __init__(self, students):
+        self.students = students
+
+    def get_all_underage_students(self):
+        underaged_students = []
+        for student in self.students:
+            if student.age < 18:
+                underaged_students.append(student)
+        return underaged_students
 
 
 student_maciek = Student('Maciek', 18, 88)
@@ -114,15 +124,9 @@ def students_with_name_starting_with(letter, all_students):
     return filtered_students
 
 
-def get_all_underage_students(students):
-    underaged_students = []
-    for student in students:
-        if student.age < 18:
-            underaged_students.append(student)
-    return underaged_students
+polish_classroom = Classroom(polish_students)
 
-
-underaged_polish = get_all_underage_students(polish_students)
+underaged_polish = polish_classroom.get_all_underage_students()
 for underaged_polish_student in underaged_polish:
     print(underaged_polish_student)
 
