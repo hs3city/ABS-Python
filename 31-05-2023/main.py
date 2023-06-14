@@ -27,9 +27,11 @@ class Teacher:
 
 class Student:
     def __init__(self, name, age, grade_average):
+
         self.name = name
-        self.age = age
+        self.age = age + 2
         self.grade_average = grade_average
+        print(self.age)
 
     def __eq__(self, other):
         if self.name == other.name and self.age == other.age and self.grade_average == other.grade_average:
@@ -83,6 +85,10 @@ class Classroom:
                 filtered_students.append(student)
         return filtered_students
 
+    def add_student(self, name, age, average):
+        new_student = Student(name, age, average)
+        self.students.append(new_student)
+        return new_student
 
 
 polish_students = [
@@ -121,10 +127,7 @@ def get_worst_student(students):
 worst_of_polish = get_worst_student(polish_students)
 print(f'Najgorszy student to {worst_of_polish.name}')
 
-
-
-
-
+x = polish_classroom.add_student('Maciek', 17, 88)
 
 
 def test_students_with_name_starting_with_A_letter():
@@ -148,3 +151,14 @@ def test_students_with_name_starting_with_A_letter():
 
 
 test_students_with_name_starting_with_A_letter()
+
+student = Student(name="Aleksandra Kowalska", age=18, grade_average=81.5)
+
+
+def remove_surname(some_student):
+    some_student.name = 'anonymous'
+
+
+remove_surname(student)
+
+print(student.name)
