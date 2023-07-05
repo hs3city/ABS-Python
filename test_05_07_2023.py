@@ -3,11 +3,19 @@ import unittest
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
         longest_prefix = ""
+        j = 0
         for i in range(len(strs)):
-            if strs[i][0] == strs[i+1][0]:
-                longest_prefix += strs[i][0]
-            else:
+            if i >= len(strs) - 1:
                 break
+            len_first = len(strs[i])
+            len_second = len(strs[i+1])
+            min_len = min(len_first, len_second)
+            while j < min_len:
+                if strs[i][j] == strs[i+1][j]:
+                    longest_prefix += strs[i][j]
+                    j += 1
+                else:
+                    break
         return longest_prefix
 
 
