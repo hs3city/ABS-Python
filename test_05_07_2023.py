@@ -24,12 +24,12 @@ class TestCommonPrefix(unittest.TestCase):
 
         assert result == ""
 
-    # def test_two_similar_words(self):
-    #     x = ['flower', 'flour']
-    #
-    #     result = Solution().longestCommonPrefix(x)
-    #
-    #     self.assertEquals('flo', result)
+    def test_two_similar_words(self):
+        x = ['flower', 'flour']
+
+        result = Solution().longestCommonPrefix(x)
+
+        self.assertEquals('flo', result)
 
 
 # TODO:
