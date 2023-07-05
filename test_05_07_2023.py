@@ -1,6 +1,9 @@
 import unittest
 
+
 class Solution:
+    words_comparisons = 0
+
     def longestCommonPrefix(self, strs: list[str]) -> str:
         longest_prefix = ""
         j = 0
@@ -33,3 +36,16 @@ class TestCommonPrefix(unittest.TestCase):
         result = Solution().longestCommonPrefix(x)
 
         self.assertEquals('flo', result)
+
+    def test_breaks_after_two_different_words(self):
+        x = ['flower', 'potato', 'flour']
+
+        Solution().longestCommonPrefix(x)
+
+        self.assertEquals(Solution.words_comparisons, 1)
+
+# TODO:
+"""
+1. niewydajność dla 1 testu?
+2. więcej niz 2 wyrazy
+"""
