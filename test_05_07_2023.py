@@ -13,8 +13,15 @@ class Solution:
 
 class TestCommonPrefix(unittest.TestCase):
     def test_two_different_words(self):
-        x = ['flower', 'potato', 'flour']
+        x = ['flower', 'potato']
 
         result = Solution().longestCommonPrefix(x)
 
         assert result == ""
+
+    def test_two_similar_words(self):
+        x = ['flower', 'flour']
+
+        result = Solution().longestCommonPrefix(x)
+
+        self.assertEquals('flo', result)
